@@ -12,8 +12,8 @@ df = pd.read_csv(data)
 app = Dash(__name__, external_stylesheets=[dbc.themes.LUX])
 mytitle = dcc.Markdown(Children='')
 mygraph = dcc.Graph(figure={})
-dropdonw = dcc.Dropdown(options = df.columns.values[2:],
-                        values='Cesaream Delivery Rate', # initial displayed value
+dropdown = dcc.Dropdown(options = df.columns.values[2:],
+                        value='Cesaream Delivery Rate', # initial displayed value
                         clearable=False)
 
 # Customize layout
@@ -22,3 +22,16 @@ app.layout = dbc.Container([
         dbc.Col([mytitle], width=6)
     ], justify='center'),
 ])
+
+# Callback
+@app.callback(
+    Output(mygraph, 'figure'),
+    Output(mytitle, 'children'),
+    Input(dropdown, value)
+)
+
+def update_graph(col_name):
+    print(col_name)
+    print(type(col_name))
+
+    fig = px.choropleth(data) # graph from plotly.com/python/choropleth-maps
