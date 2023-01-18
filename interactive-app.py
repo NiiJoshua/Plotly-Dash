@@ -1,4 +1,4 @@
-from dash import Dash, dcc, Output, Input
+from dashmap import Dash, dcc, Output, Input
 import dash_bootstrap_components as dbc
 
 # Build components
