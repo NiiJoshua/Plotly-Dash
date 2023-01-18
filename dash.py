@@ -12,4 +12,13 @@ df = pd.read_csv(data)
 app = Dash(__name__, external_stylesheets=[dbc.themes.LUX])
 mytitle = dcc.Markdown(Children='')
 mygraph = dcc.Graph(figure={})
-dropdonw = dcc.Dropdown(options)
+dropdonw = dcc.Dropdown(options = df.columns.values[2:],
+                        values='Cesaream Delivery Rate', # initial displayed value
+                        clearable=False)
+
+# Customize layout
+app.layout = dbc.Container([
+    dbc.Row([
+        dbc.Col([mytitle], width=6)
+    ], justify='center'),
+])
